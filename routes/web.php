@@ -15,3 +15,4 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', [UserController::class, 'showHomepage']);
+Route::post('/signup', [UserController::class, 'addUser']);
