@@ -30,7 +30,12 @@ class UserController extends Controller
         $newUser["password"] = bcrypt($newUser["password"]);
 
         // Store new user data into database
-        User::create($newUser);
+       $user = User::create($newUser);
+
+        // Automatically login after creating an account
+        auth()->login($user);
+
+        return redirect('/')->with('success', 'Account Successfully Created');
     }
 
     // Log in
