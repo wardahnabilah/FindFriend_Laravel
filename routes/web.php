@@ -18,3 +18,4 @@ Route::get('/', [UserController::class, 'showHomepage']);
 Route::post('/signup', [UserController::class, 'addUser']);
 Route::get('/login', [UserController::class, 'showLoginPage']);
 Route::post('/login', [UserController::class, 'login']);
+Route::get('/logout', [UserController::class, 'logout']);

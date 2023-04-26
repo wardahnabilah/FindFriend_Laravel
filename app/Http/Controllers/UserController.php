@@ -55,4 +55,10 @@ class UserController extends Controller
         }
     }
 
+    // Log out
+    public function logout() {
+        auth()->logout();
+
+        return redirect('/')->with('success', 'Successfully Log out');
+    }
 }
