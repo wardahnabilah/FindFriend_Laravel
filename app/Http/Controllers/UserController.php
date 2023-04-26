@@ -33,7 +33,7 @@ class UserController extends Controller
         User::create($newUser);
     }
 
-    // Login
+    // Log in
     public function login(Request $request) {
         $userLogin = $request->validate([
             "usernameLogin" => "required",
@@ -42,13 +42,12 @@ class UserController extends Controller
 
         // Check if username and password are matched with data in the database
         if(auth()->attempt(["username" => $userLogin["usernameLogin"], "password" => $userLogin["passwordLogin"]])) {
-            return view('homepage');
-        } else{
-            return "Your username or password is wrong";
+            $request->session()->regenerate();
+
+            return redirect('/')->with('success', 'Successfully Logged In');
+        } else {
+            return redirect('/login')->with('failed', 'Username or password is wrong');
         }
     }
 
-    public function logout() {
-        auth()->logout();
-    }
 }

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/main.css">
     <title>FindFriend</title>
 </head>
-<body class="blue-bg">
+<body class={{auth()->check() ? "" : "blue-bg"}}>
     <header class="header">
         <img src="/icon-findfriend.svg" alt="">
         @auth
@@ -20,10 +20,22 @@
             </div>
         @else
             {{-- If not logged in, show 'log in' or 'sign up' button --}}
-            <div class="button-link">Log In</div>
-            <div class="button-link">Sign Up</div>
+            <a href="/login" class="button-link">Log In</a>
+            <a href="/" class="button-link">Sign Up</a>
         @endauth
     </header>
+
+    {{-- Show success flash message --}}
+    @if (session()->has('success')) 
+        <div class="alert-container success">
+            {{session('success')}}
+        </div>
+    {{-- Show failed flash message --}}
+    @elseif (session()->has('failed'))
+        <div class="alert-container failed">
+            {{session('failed')}}
+        </div>
+    @endif
 
     {{$slot}}
 
