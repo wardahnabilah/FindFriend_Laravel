@@ -8,12 +8,17 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
-    // show the homepage
+    // Show the homepage
     public function showHomepage() {
         return view('homepage');
     }
 
-    // Add user to database
+    // Show login page
+    public function showLoginPage() {
+        return view('login-page');
+    }
+
+    // Add user to database (Create new user)
     public function addUser(Request $request) {
         $newUser = $request->validate([
             'username' => ['required', 'min:3', 'max:15', Rule::unique('users', 'username')],
@@ -21,10 +26,29 @@ class UserController extends Controller
             'password' => ['required', 'min:8', 'confirmed']
         ]);
 
-        // hash the password before storing it in the database
+        // Hash the password before storing it in the database
         $newUser["password"] = bcrypt($newUser["password"]);
 
         // Store new user data into database
         User::create($newUser);
+    }
+
+    // Login
+    public function login(Request $request) {
+        $userLogin = $request->validate([
+            "usernameLogin" => "required",
+            "passwordLogin" => "required"
+        ]);
+
+        // Check if username and password are matched with data in the database
+        if(auth()->attempt(["username" => $userLogin["usernameLogin"], "password" => $userLogin["passwordLogin"]])) {
+            return view('homepage');
+        } else{
+            return "Your username or password is wrong";
+        }
+    }
+
+    public function logout() {
+        auth()->logout();
     }
 }

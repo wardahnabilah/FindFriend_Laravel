@@ -12,8 +12,17 @@
 <body class="blue-bg">
     <header class="header">
         <img src="/icon-findfriend.svg" alt="">
-        <div class="button-link">Log In</div>
-        <div class="button-link">Sign Up</div>
+        @auth
+            {{-- If logged in, show the 'log out' button --}}
+            <div class="account">
+                <a href="/logout" class="account__logout-text">Log out</a>
+                <img class="photo photo--small" src="/profile.jpg" alt="">
+            </div>
+        @else
+            {{-- If not logged in, show 'log in' or 'sign up' button --}}
+            <div class="button-link">Log In</div>
+            <div class="button-link">Sign Up</div>
+        @endauth
     </header>
 
     {{$slot}}
