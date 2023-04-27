@@ -5,7 +5,7 @@
             <div class="container home-empty">
                 <h2>Welcome, {{auth()->user()->username}} !</h2>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita alias nesciunt, repellat quis sed dolorem ratione illo praesentium.</p>
-                <button class="button button--yellow">Create Your First Post</button>
+                <a href="create-post" class="button button--yellow">Create Your First Post</a>
             </div>
         </main>
     @else
