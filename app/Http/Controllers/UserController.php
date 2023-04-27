@@ -41,8 +41,8 @@ class UserController extends Controller
     // Log in
     public function login(Request $request) {
         $userLogin = $request->validate([
-            "usernameLogin" => "required",
-            "passwordLogin" => "required"
+            'usernameLogin' => 'required',
+            'passwordLogin' => 'required'
         ]);
 
         // Check if username and password are matched with data in the database
@@ -60,5 +60,13 @@ class UserController extends Controller
         auth()->logout();
 
         return redirect('/')->with('success', 'Successfully Log out');
+    }
+
+    // Show the profile
+    public function showProfile(User $profile) {
+        return view('profile', [
+            'username' => $profile->username,
+            'posts' => $profile->posts()->latest()->get()
+        ]);
     }
 }
