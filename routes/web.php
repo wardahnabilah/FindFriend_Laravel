@@ -17,12 +17,12 @@ use App\Http\Controllers\UserController;
 
 // User Routes
 Route::get('/', [UserController::class, 'showHomepage']);
-Route::post('/signup', [UserController::class, 'addUser']);
-Route::get('/login', [UserController::class, 'showLoginPage']);
-Route::post('/login', [UserController::class, 'login']);
-Route::get('/logout', [UserController::class, 'logout']);
+Route::post('/signup', [UserController::class, 'addUser'])->middleware('guest');
+Route::get('/login', [UserController::class, 'showLoginPage'])->middleware('guest');
+Route::post('/login', [UserController::class, 'login'])->middleware('guest');
+Route::get('/logout', [UserController::class, 'logout'])->middleware('mustLogin');
 
 // Post Routes
-Route::get('/create-post', [PostController::class, 'showPostForm']);
-Route::post('/create-post', [PostController::class, 'storeNewPost']);
-Route::get('/post/{post}', [PostController::class, 'showThePost']);
+Route::get('/create-post', [PostController::class, 'showPostForm'])->middleware('mustLogin');
+Route::post('/create-post', [PostController::class, 'storeNewPost'])->middleware('mustLogin');
+Route::get('/post/{post}', [PostController::class, 'showThePost'])->middleware('mustLogin');
