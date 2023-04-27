@@ -25,3 +25,4 @@ Route::get('/logout', [UserController::class, 'logout']);
 // Post Routes
 Route::get('/create-post', [PostController::class, 'showPostForm']);
 Route::post('/create-post', [PostController::class, 'storeNewPost']);
+Route::get('/post/{post}', [PostController::class, 'showThePost']);

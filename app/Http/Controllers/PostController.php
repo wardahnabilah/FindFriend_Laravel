@@ -28,12 +28,21 @@ class PostController extends Controller
         $newPost['user_id'] = auth()->user()->id;
 
         // Store new post data in the database
-        Post::create([
+        $post = Post::create([
             'title' => $newPost['postTitle'], 
             'body' => $newPost['postBody'],
             'user_id' => $newPost['user_id']
         ]);
 
-        return "Stored!";
+        return redirect("/post/{$post->id}")->with('success', 'New post created');
+    }
+
+    public function showThePost(Post $post) {
+        return view('post', [
+            'title' => $post ->title, 
+            'body' => $post->body, 
+            'created_at' => $post->created_at,
+            'author' => $post->author->username
+        ]);
     }
 }
