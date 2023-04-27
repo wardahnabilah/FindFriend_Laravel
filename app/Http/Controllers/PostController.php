@@ -37,6 +37,7 @@ class PostController extends Controller
         return redirect("/post/{$post->id}")->with('success', 'New post created');
     }
 
+    // Show the post
     public function showThePost(Post $post) {
 
         // Markdown support
@@ -44,10 +45,23 @@ class PostController extends Controller
         $post->body = Str::markdown($post->body);
         
         return view('post', [
+            'post' => $post,
             'title' => $post ->title, 
             'body' => $post->body, 
             'created_at' => $post->created_at,
             'author' => $post->author->username
         ]);
+    }
+
+    // Delete the post
+    public function deletePost(Post $post) {
+        // Only the author of the post can delete the post
+        if(auth()->user()->can('delete', $post)) {
+            $post->delete();
+            
+            return redirect('/profile/' . auth()->user()->username)->with('success', 'Post Deleted');
+        } else {
+            return redirect('/profile/' . auth()->user()->username)->with('failed', "You can't delete the post");
+        }
     }
 }
