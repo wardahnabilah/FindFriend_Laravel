@@ -64,4 +64,39 @@ class PostController extends Controller
             return redirect('/profile/' . auth()->user()->username)->with('failed', "You can't delete the post");
         }
     }
+
+    // Show the edit post form
+    public function showEditPostForm(Post $post) {
+        if(auth()->user()->can('update', $post)) {
+            return view('edit-post', [
+                'postId' => $post->id,
+                'currentPostTitle' => $post->title,
+                'currentPostBody' => $post->body]);
+        } else {
+            return redirect('/profile/' . auth()->user()->username)->with('failed', "You can't update the post");
+        }
+    }
+
+    // Update the post
+    public function updatePost(Request $request, Post $post) {
+        $updatedPost = $request->validate([
+            'postTitle' => 'required',
+            'postBody' => 'required'
+        ]);
+
+        $updatedPost['postTitle'] = strip_tags($updatedPost['postTitle']);
+        $updatedPost['postBody'] = strip_tags($updatedPost['postBody']);
+        
+        // Only the author can edit the post
+        if(auth()->user()->can('update', $post)) {
+            $post->update([
+                'title' => $updatedPost['postTitle'],
+                'body' => $updatedPost['postBody']
+            ]);
+
+            return redirect("/post/{$post->id}")->with('success', 'Post Updated');
+        } else {
+            return redirect('/profile/' . auth()->user()->username)->with('failed', "You can't update the post");
+        }
+    }
 }
