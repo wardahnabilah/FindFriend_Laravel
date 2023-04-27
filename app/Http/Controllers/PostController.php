@@ -38,6 +38,9 @@ class PostController extends Controller
     }
 
     public function showThePost(Post $post) {
+        $post->title = strip_tags(Str::markdown($post->title), '<strong><em><u>');
+        $post->body = Str::markdown($post->body);
+        
         return view('post', [
             'title' => $post ->title, 
             'body' => $post->body, 

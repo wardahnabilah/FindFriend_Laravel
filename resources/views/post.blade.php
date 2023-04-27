@@ -3,7 +3,7 @@
         <div class="container">
             <div class="card card__post">
                 <div class="card-header-container">
-                    <h3>{{$title}}</h3>
+                    <h3>{!! $title !!}</h3>
                     <div class="icon-container">
                         <!-- Edit Icon -->
                         <svg class="edit" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="small-text posted-on">posted on {{$created_at->format('d F Y')}} by <a href="" class="button-link--blue">{{$author}}</a></div>
-                <p>{{$body}}</p>    
+                <p>{!! $body !!}</p>    
             </div>    
         </div>
     </main>
