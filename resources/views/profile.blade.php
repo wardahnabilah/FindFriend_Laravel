@@ -8,7 +8,10 @@
                     @if(auth()->user()->username === $username)
                         <a href="/manage-avatar" class="button button--blue">Change Avatar</a>
                     @else
-                        <button class="button button--yellow">+ Follow</button>
+                        <form action="/profile/{{$username}}/follow" method="POST">
+                            @csrf
+                            <button class="button button--yellow">+ Follow</button>
+                        </form>
                     @endif
                 </div>
             </div>

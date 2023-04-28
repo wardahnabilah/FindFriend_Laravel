@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\FollowController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +35,6 @@ Route::put('/post/{post}/edit', [PostController::class, 'updatePost'])->middlewa
 Route::get('/profile/{user:username}', [UserController::class, 'showProfile'])->middleware('mustLogin');
 Route::get('/manage-avatar', [UserController::class, 'showEditProfile'])->middleware('mustLogin');
 Route::post('/manage-avatar', [UserController::class, 'storeAvatar'])->middleware('mustLogin');
+
+// Follow Routes
+Route::post('/profile/{user:username}/follow', [FollowController::class, 'storeFollow'])->middleware('mustLogin');
