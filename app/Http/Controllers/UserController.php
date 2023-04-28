@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\View;
 
 class UserController extends Controller
 {
@@ -65,16 +66,45 @@ class UserController extends Controller
         return redirect('/')->with('success', 'Successfully Log out');
     }
 
-    // Show the profile
-    public function showProfile(User $user) {
+    // Profile Data
+    private function getProfileData($user) {
         $alreadyFollowed = Follow::where([['user_id', '=', auth()->user()->id], ['follow_this_user', '=', $user->id]])->count();
-
-        return view('profile', [
+        
+        View::share('profileData', [
             'alreadyFollowed' => $alreadyFollowed,
             'userAvatar' => $user->avatar,
             'username' => $user->username,
+            'postCount' => $user->posts()->get()->count(),
+            'followersCount' => $user->followers()->get()->count(),
+            'followingCount' => $user->following()->get()->count()
+        ]);
+    }
+
+    // Show the profile
+    public function showProfile(User $user) {
+        $this->getProfileData($user);
+
+        return view('profile', [
             'posts' => $user->posts()->latest()->get()
         ]);
+    }
+
+    // Show the followers in profile
+    public function showProfileFollowers(User $user) {
+        $this->getProfileData($user);
+
+        $followers = $user->followers()->latest()->get();
+
+        return view('profile-followers', ['followers' => $followers]);
+    }
+
+    // Show the following in profile
+    public function showProfileFollowing(User $user) {
+        $this->getProfileData($user);
+
+        $following = $user->following()->latest()->get();
+
+        return view('profile-following', ['following' => $following]);
     }
 
     // Show edit profile

@@ -33,6 +33,8 @@ Route::put('/post/{post}/edit', [PostController::class, 'updatePost'])->middlewa
 
 // Profile Routes
 Route::get('/profile/{user:username}', [UserController::class, 'showProfile'])->middleware('mustLogin');
+Route::get('/profile/{user:username}/followers', [UserController::class, 'showProfileFollowers'])->middleware('mustLogin');
+Route::get('/profile/{user:username}/following', [UserController::class, 'showProfileFollowing'])->middleware('mustLogin');
 Route::get('/manage-avatar', [UserController::class, 'showEditProfile'])->middleware('mustLogin');
 Route::post('/manage-avatar', [UserController::class, 'storeAvatar'])->middleware('mustLogin');
 
