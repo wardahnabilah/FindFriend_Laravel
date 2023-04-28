@@ -16,7 +16,7 @@
             {{-- If logged in, show the 'log out' button --}}
             <div class="account">
                 <a href="/logout" class="account__logout-text">Log out</a>
-                <a href="/profile/{{auth()->user()->username}}"><img class="photo photo--small" src="/profile.jpg" alt="profile photo"></a>
+                <a href="/profile/{{auth()->user()->username}}"><img class="photo photo--small" src="{{auth()->user()->avatar}}" alt="profile photo"></a>
             </div>
         @else
             {{-- If not logged in, show 'log in' or 'sign up' button --}}

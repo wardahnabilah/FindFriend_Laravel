@@ -2,10 +2,14 @@
     <main>
         <div class="container profile">
             <div class="profile__detail">
-                <img src="/profile.jpg" alt="" class=" photo photo--medium profile__detail-image">
+                <img src="{{$userAvatar}}" alt="" class=" photo photo--medium profile__detail-image">
                 <div class="profile__detail-text">
                     <h3 class="name">{{$username}}</h3>
-                    <button class="button button--yellow">+ Follow</button>
+                    @if(auth()->user()->username === $username)
+                        <a href="/manage-avatar" class="button button--blue">Change Avatar</a>
+                    @else
+                        <button class="button button--yellow">+ Follow</button>
+                    @endif
                 </div>
             </div>
             <div class="profile__menu">
@@ -19,7 +23,7 @@
                     <div class=" card card__timeline">
                         <div class="card-header-container">
                             <div class="profile-detail">
-                                <img class="profile-detail__image photo photo--small" src="/profile.jpg" alt="">
+                                <img class="profile-detail__image photo photo--small" src="{{$post->author->avatar}}" alt="">
                                 <span class="profile-detail__name">{{$post->author->username}}</span>
                             </div>
                             <div class="small-text posted-on">posted on {{$post->created_at->format('d F Y')}}</div>
