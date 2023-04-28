@@ -1,6 +1,5 @@
 <x-layout>
-    @auth
-        {{-- If logged in, show login homepage --}}
+    @if($posts->isEmpty())
         <main>
             <div class="container home-empty">
                 <h2>Welcome, {{auth()->user()->username}} !</h2>
@@ -9,40 +8,30 @@
             </div>
         </main>
     @else
-        {{-- If not logged in, show sign up page --}}
-        <main>
-            <div class="container homepage">
-                <h1 class="homepage__text">Connect With New Friends Around The World</h1>
-                <form class="form" action="/signup" method="POST">
-                    @csrf
-                    <div class="input-container">
-                        <input class="input input--blue" type="text" value="{{old('username')}}" name="username" placeholder="Username">
-                        @error('username')
-                            <div class="alert-text small-text">{{$message}}</div>
-                        @enderror
+    <main>
+        <div class="container timeline">
+            <h2 class="timeline__title">Timeline</h2>
+            <a href="/create-post" class="button button--yellow button--small">+ Create New Post</a>
+
+            <!-- Post Cards -->
+            @foreach($posts as $post)
+                <a href="">
+                    <div class=" card card__timeline">
+                        <div class="card-header-container">
+                            <div class="profile-detail">
+                                <img class="profile-detail__image photo photo--small" src="{{$post->author->avatar}}" alt="">
+                                <span class="profile-detail__name">{{$post->author->username}}</span>
+                            </div>
+                            <div class="small-text posted-on">posted on {{$post->created_at->format('d F Y')}}</div>
+                        </div>
+                        <div class="card-body-container">
+                            <h6 class="post-title">{{$post->title}}</h6>
+                            <p class="post-body">{{$post->body}}</p>
+                        </div>
                     </div>
-                    <div class="input-container">
-                        <input class="input input--blue" type="text" value="{{old('email')}}" name="email" placeholder="Email">
-                        @error('email')
-                            <div class="alert-text small-text">{{$message}}</div>
-                        @enderror
-                    </div>
-                    <div class="input-container">
-                        <input class="input input--blue" type="password" name="password" placeholder="Password (min. 8 characters)">
-                        @error('password')
-                            <div class="alert-text small-text">{{$message}}</div>
-                        @enderror
-                    </div>
-                    <div class="input-container">
-                        <input class="input input--blue" type="password" name="password_confirmation" placeholder="Password Confirmation">
-                        @error('password_confirmation')
-                            <div class="alert-text small-text">{{$message}}</div>
-                        @enderror
-                    </div>
-                    <button class="button button--yellow">Sign Up</button>
-                </form>
-                <p class="small-text">Already have an account? <a href="/login" class="button-link">Log In</a></p>
-            </div>
-        </main>
-    @endauth
+                </a>
+            @endforeach
+        </div>
+    </main>
+    @endif
 </x-layout>
