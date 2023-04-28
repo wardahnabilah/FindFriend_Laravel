@@ -7,6 +7,11 @@
                     <h3 class="name">{{$username}}</h3>
                     @if(auth()->user()->username === $username)
                         <a href="/manage-avatar" class="button button--blue">Change Avatar</a>
+                    @elseif($alreadyFollowed)
+                        <form action="/profile/{{$username}}/unfollow" method="POST">
+                            @csrf
+                            <button class="button button--red">Unfollow</button>
+                        </form>
                     @else
                         <form action="/profile/{{$username}}/follow" method="POST">
                             @csrf

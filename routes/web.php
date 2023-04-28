@@ -38,3 +38,4 @@ Route::post('/manage-avatar', [UserController::class, 'storeAvatar'])->middlewar
 
 // Follow Routes
 Route::post('/profile/{user:username}/follow', [FollowController::class, 'storeFollow'])->middleware('mustLogin');
+Route::post('/profile/{user:username}/unfollow', [FollowController::class, 'deleteFollow'])->middleware('mustLogin');
