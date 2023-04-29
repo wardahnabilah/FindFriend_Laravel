@@ -17,4 +17,8 @@
             </div>
         </a>
     @endforeach
+
+    <div class="mt-5">
+        {{$posts->links()}}
+    </div>
 </x-profile-layout>

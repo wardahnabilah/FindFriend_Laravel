@@ -31,6 +31,11 @@
                     </div>
                 </a>
             @endforeach
+
+            <div class="mt-5">
+                {{$posts->links()}}
+            </div>
+
         </div>
     </main>
     @endif

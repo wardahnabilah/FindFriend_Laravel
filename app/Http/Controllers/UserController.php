@@ -16,7 +16,7 @@ class UserController extends Controller
     public function showHomepage() {
         //If logged in, show login homepage
         if(auth()->check()) {
-            $posts = auth()->user()->feedPosts()->latest()->paginate(3);
+            $posts = auth()->user()->feedPosts()->latest()->paginate(3); 
 
             return view('homepage', ['posts' => $posts]);
         } 
@@ -93,9 +93,7 @@ class UserController extends Controller
     public function showProfile(User $user) {
         $this->getProfileData($user);
 
-        return view('profile', [
-            'posts' => $user->posts()->latest()->paginate(3)
-        ]);
+        return view('profile', ['posts' => $user->posts()->latest()->paginate(3)]);
     }
 
     // Show the followers in profile
