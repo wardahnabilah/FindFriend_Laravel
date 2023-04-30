@@ -159,4 +159,12 @@ class UserController extends Controller
 
         return back()->with('success', 'Avatar changed');
     }
+
+    // Search user
+    public function searchUser($keyword) {
+        // Search user according to the keyword
+        $users = User::search($keyword)->get();
+
+        return $users;
+    }
 }

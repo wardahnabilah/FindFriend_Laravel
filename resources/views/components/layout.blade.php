@@ -8,23 +8,32 @@
     <link rel="icon" href="/favicon.svg">
     {{-- Bootstrap CDN Link CSS--}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/main.css">
     {{-- Bootstrap CDN Link JS--}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" defer></script>
+    @vite(['resources/css/app.css'])
+    @vite(['resources/js/app.js'])
     <title>FindFriend</title>
 </head>
 <body class={{auth()->check() ? "" : "blue-bg"}}>
     <header class="header">
         <a href="/"><img src="/icon-findfriend.svg" alt="find friend logo"></a>
-        
-        <!-- If logged in, show the 'log out' button -->
+        <!-- If logged in, show the search and log out buttons -->
         @auth
-            <!-- Profile and Log out -->
-            <div class="account">
-                <a href="/logout" class="account__logout-text">Log out</a>
-                <a href="/profile/{{auth()->user()->username}}"><img class="photo photo--small" src="{{auth()->user()->avatar}}" alt="profile photo"></a>
+            <div class="items-container">
+                <!-- Search Icon -->
+                <div class="search" id="search-friends">
+                    Search Friends
+                    <svg class="search__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="rgba(0, 0, 0, 1)">
+                        <path d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z"></path>
+                        <path d="M11.412 8.586c.379.38.588.882.588 1.414h2a3.977 3.977 0 0 0-1.174-2.828c-1.514-1.512-4.139-1.512-5.652 0l1.412 1.416c.76-.758 2.07-.756 2.826-.002z"></path>
+                    </svg>
+                </div>
+                <!-- Profile and Log out -->
+                <div class="account">
+                    <a href="/logout" class="account__logout-text">Log out</a>
+                    <a href="/profile/{{auth()->user()->username}}"><img class="photo photo--small" src="{{auth()->user()->avatar}}" alt="profile photo"></a>
+                </div>
             </div>
-        
         <!-- If not logged in, show 'log in' or 'sign up' button -->
         @else
             <!-- Show 'login' on sign up page -->

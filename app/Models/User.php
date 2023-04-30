@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Follow;
+use Laravel\Scout\Searchable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -12,6 +13,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    use Searchable;
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
@@ -64,5 +66,9 @@ class User extends Authenticatable
 
     public function feedPosts() {
         return $this->hasManyThrough(Post::class, Follow::class, 'user_id', 'user_id', 'id', 'follow_this_user');
+    }
+
+    public function toSearchableArray() {
+        return ['username' => $this->username];
     }
 }

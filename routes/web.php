@@ -22,6 +22,7 @@ Route::post('/signup', [UserController::class, 'addUser'])->middleware('guest');
 Route::get('/login', [UserController::class, 'showLoginPage'])->middleware('guest');
 Route::post('/login', [UserController::class, 'login'])->middleware('guest');
 Route::get('/logout', [UserController::class, 'logout'])->middleware('mustLogin');
+Route::get('/search/{keyword}', [UserController::class, 'searchUser'])->middleware('mustLogin');
 
 // Post Routes
 Route::get('/create-post', [PostController::class, 'showPostForm'])->middleware('mustLogin');
