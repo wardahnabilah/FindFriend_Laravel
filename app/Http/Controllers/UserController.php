@@ -101,8 +101,16 @@ class UserController extends Controller
         $this->getProfileData($user);
 
         $followers = $user->followers()->latest()->get();
+        $following = $user->following()->latest()->get();
+        
+        // Store the id of the user following in followingId array
+        $followingId = array();
 
-        return view('profile-followers', ['followers' => $followers]);
+        foreach($following as $eachfollowing) {
+            array_push($followingId, $eachfollowing->follow_this_user);
+        }
+
+        return view('profile-followers', ['followers' => $followers, 'followingId' => $followingId]);
     }
 
     // Show the following in profile
