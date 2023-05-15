@@ -11,7 +11,7 @@
                         <form action="/profile/{{$profileData['username']}}/unfollow" method="POST">
                             @csrf
                             <button class="button button--red">Unfollow</button>
-                    </form>
+                        </form>
                     @else
                         <form action="/profile/{{$profileData['username']}}/follow" method="POST">
                             @csrf

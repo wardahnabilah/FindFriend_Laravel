@@ -1,4 +1,6 @@
 import './bootstrap';
 import Search from './searchFriends';
 
-new Search()
+if(document.querySelector("#search-friends")) {
+    new Search()
+}

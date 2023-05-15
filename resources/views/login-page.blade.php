@@ -2,7 +2,7 @@
     <main class="blue-bg">
         <div class="container login">
             <h3>Log In</h3>
-            <form class="form" action="/login" method="POST">
+            <form class="form" action="/login" method="POST" autocomplete="off">
                 @csrf
                 <div class="input-container">
                     <input class="input input--blue" type="text" name="usernameLogin" placeholder="Username">

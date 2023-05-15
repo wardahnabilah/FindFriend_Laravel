@@ -2,7 +2,7 @@
     <main>
         <div class="container">
             <h3>Create Post</h3>
-            <form class="form form--createpost" action="/create-post" method="POST">
+            <form class="form form--createpost" action="/create-post" method="POST" autocomplete="off">
                 @csrf
                 <div class="input-container">
                     <input class="input input--white" type="text" name="postTitle" placeholder="Title">

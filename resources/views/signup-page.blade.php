@@ -2,7 +2,7 @@
     <main>
         <div class="container homepage">
             <h1 class="homepage__text">Connect With New Friends Around The World</h1>
-            <form class="form" action="/signup" method="POST">
+            <form class="form" action="/signup" method="POST" autocomplete="off">
                 @csrf
                 <div class="input-container">
                     <input class="input input--blue" type="text" value="{{old('username')}}" name="username" placeholder="Username">
