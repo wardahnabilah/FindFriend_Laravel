@@ -1,4 +1,8 @@
 <x-profile-layout :profileData="$profileData">
+    @if($profileData['postCount'] === 0)
+        <p class="profile-empty">You don't have any posts yet</p>
+        <a href="/create-post" class="button button--yellow button--small profile-empty-btn">+ Create New Post</a>
+    @endif
     <!-- Post Cards -->
     @foreach($posts as $post)
         <a href="/post/{{$post->id}}">

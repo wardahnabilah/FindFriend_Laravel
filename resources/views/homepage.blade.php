@@ -11,6 +11,7 @@
     <main>
         <div class="container timeline">
             <h2 class="timeline__title">Timeline</h2>
+            <p  class="timeline__subtitle">(Posts from people you followed)</p>
             <a href="/create-post" class="button button--yellow button--small">+ Create New Post</a>
 
             <!-- Post Cards -->

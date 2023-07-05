@@ -56,8 +56,8 @@ p {
         font-size: 0.875rem;
     }
 }
-.small-text .posted-on,
-.small-text .read-more {
+.small-text.posted-on,
+.small-text.read-more {
     font-weight: 300;
 }
 .input,
@@ -112,8 +112,17 @@ body {
 .card__post {
     margin-top: 4rem;
 }
+.card__post .post-body {
+    margin-top: 2rem;
+}
 .timeline__title {
+    margin-bottom: 1rem;
+}
+.timeline__subtitle {
     margin-bottom: 2rem;
+    font-size: .875rem;
+    letter-spacing: .2rem;
+    color: rgba(0, 0, 0, 0.5);
 }
 .timeline .button {
     margin-left: auto;
@@ -122,6 +131,7 @@ body {
 .profile__detail {
     max-width: 15.5rem;
     display: flex;
+    align-items: center;
     margin-bottom: 2rem;
     margin-inline: auto;
 }
@@ -130,6 +140,9 @@ body {
 }
 .profile__detail-text .name {
     margin-bottom: 1rem;
+}
+.profile-detail .small-text.posted-on {
+    margin-block: 0;
 }
 .profile__menu {
     display: grid;
@@ -145,6 +158,13 @@ body {
 .profile__menu a:hover {
     color: #2a2f50;
     font-weight: 800;
+}
+.profile-empty {
+    margin-top: 4rem;
+}
+.profile-empty-btn {
+    margin-top: 1rem;
+    margin-inline: auto;
 }
 .login {
     margin-top: 3rem;

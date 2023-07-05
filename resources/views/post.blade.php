@@ -27,8 +27,11 @@
                         </div>
                     @endcan
                 </div>
-                <div class="small-text posted-on">posted on {{$created_at->format('d F Y')}} by <a href="" class="button-link--blue">{{$author}}</a></div>
-                <p>{!! $body !!}</p>    
+                <div class="profile-detail">
+                    <img class="profile-detail__image photo photo--small" src="{{$post->author->avatar}}" alt="">
+                    <div class="small-text posted-on">posted on {{$created_at->format('d F Y')}} by <a href="" class="button-link--blue">{{$author}}</a></div>
+                </div>
+                <div class="post-body">{!! $body !!}</div>
             </div>    
         </div>
     </main>

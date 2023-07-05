@@ -3,6 +3,7 @@ import DOMPurify from "dompurify";
 export default class Search {
     constructor() {
         this.searchIcon = document.querySelector("#search-friends")
+        this.emptyFollowingBtn = document.querySelector("#emptyFollowingBtn")
         this.closeIcon = document.querySelector(".close-icon")
         this.searchInput = document.querySelector(".search-input")
         this.searchContainer = document.querySelector(".search-container")
@@ -13,6 +14,7 @@ export default class Search {
 
     events() {
         this.searchIcon.addEventListener("click", () => this.showSearchContainer())
+        this.emptyFollowingBtn.addEventListener("click", () => this.showSearchContainer())
         this.closeIcon.addEventListener("click", () => this.hideSearchContainer())
         this.searchInput.addEventListener("input", (event) => this.searchUsers(event))
     }

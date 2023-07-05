@@ -1,4 +1,8 @@
 <x-profile-layout :profileData="$profileData">
+    @if($profileData['followingCount'] === 0)
+        <p class="profile-empty">You haven't followed anyone yet</p>
+        <div id="emptyFollowingBtn" class="button button--yellow button--small profile-empty-btn"> Search New Friend</div>
+    @endif
     <!-- Following Cards -->
     @foreach($following as $everyFollowing)
         <a href="/profile/{{$everyFollowing->followingUser->username}}">

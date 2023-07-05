@@ -1,4 +1,7 @@
 <x-profile-layout :profileData="$profileData">
+    @if($profileData['followersCount'] === 0)
+        <p class="profile-empty">You don't have any followers yet</p>
+    @endif
     <!-- Followers Cards -->
     @foreach($followers as $follower)
         <a href="/profile/{{$follower->followerUser->username}}">
