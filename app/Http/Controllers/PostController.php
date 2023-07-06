@@ -49,7 +49,7 @@ class PostController extends Controller
             'title' => $post ->title, 
             'body' => $post->body, 
             'created_at' => $post->created_at,
-            'author' => $post->author->username
+            'author' => $post->user->username
         ]);
     }
 

@@ -12,10 +12,12 @@
                         <img class="profile-detail__image photo photo--small" src="{{$everyFollowing->followingUser->avatar}}" alt="">
                         <span class="profile-detail__name">{{$everyFollowing->followingUser->username}}</span>
                     </div>
-                    <form action="/profile/{{$everyFollowing->followingUser->username}}/unfollow" method="POST">
-                        @csrf
-                        <button class="button button--red">Unfollow</button>
-                    </form>   
+                    @if($everyFollowing->followingUser->username !== auth()->user()->username)
+                        <form action="/profile/{{$everyFollowing->followingUser->username}}/unfollow" method="POST">
+                            @csrf
+                            <button class="button button--red">Unfollow</button>
+                        </form>
+                    @endif
                 </div>    
             </div>
         </a>

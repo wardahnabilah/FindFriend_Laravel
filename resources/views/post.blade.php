@@ -28,8 +28,8 @@
                     @endcan
                 </div>
                 <div class="profile-detail">
-                    <img class="profile-detail__image photo photo--small" src="{{$post->author->avatar}}" alt="">
-                    <div class="small-text posted-on">posted on {{$created_at->format('d F Y')}} by <a href="" class="button-link--blue">{{$author}}</a></div>
+                    <img class="profile-detail__image photo photo--small" src="{{$post->user->avatar}}" alt="">
+                    <div class="small-text posted-on">posted on {{$created_at->format('d F Y')}} by <a href="/profile/{{$post->user->username}}" class="button-link--blue">{{$author}}</a></div>
                 </div>
                 <div class="post-body">{!! $body !!}</div>
             </div>    

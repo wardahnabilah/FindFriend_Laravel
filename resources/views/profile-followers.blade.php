@@ -12,20 +12,22 @@
                         <span class="profile-detail__name">{{$follower->followerUser->username}}</span>
                     </div>
                     
-                {{-- Follow or unfollow button --}}
-                    {{-- If the user also following the follower, show unfollow button --}}
-                    @if(in_array($follower->followerUser->id, $followingId))
-                        <form action="/profile/{{$follower->followerUser->username}}/unfollow" method="POST">
-                            @csrf
-                            <button class="button button--red">Unfollow</button>
-                        </form>
-                    {{-- Otherwise, show follow button --}}
-                    @else
-                        <form action="/profile/{{$follower->followerUser->username}}/follow" method="POST">
-                            @csrf
-                            <button class="button button--yellow">+ Follow</button>
-                        </form>
-                    @endif 
+                @if(auth()->user()->username === $profileData['username'])
+                    {{-- Follow or unfollow button --}}
+                        {{-- If the user also following the follower, show unfollow button --}}
+                        @if(in_array($follower->followerUser->id, $followingId))
+                            <form action="/profile/{{$follower->followerUser->username}}/unfollow" method="POST">
+                                @csrf
+                                <button class="button button--red">Unfollow</button>
+                            </form>
+                        {{-- Otherwise, show follow button --}}
+                        @else
+                            <form action="/profile/{{$follower->followerUser->username}}/follow" method="POST">
+                                @csrf
+                                <button class="button button--yellow">+ Follow</button>
+                            </form>
+                        @endif 
+                @endif
                 </div>    
             </div>
         </a>

@@ -72,7 +72,7 @@ class UserController extends Controller
     public function logout() {
         auth()->logout();
 
-        return redirect('/')->with('success', 'Successfully Log out');
+        return redirect('/login')->with('success', 'Successfully Log out');
     }
 
     // Profile Data

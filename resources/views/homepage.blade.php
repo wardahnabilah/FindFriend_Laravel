@@ -20,8 +20,8 @@
                     <div class=" card card__timeline">
                         <div class="card-header-container">
                             <div class="profile-detail">
-                                <img class="profile-detail__image photo photo--small" src="{{$post->author->avatar}}" alt="">
-                                <span class="profile-detail__name">{{$post->author->username}}</span>
+                                <img class="profile-detail__image photo photo--small" src="{{$post->user->avatar}}" alt="">
+                                <span class="profile-detail__name">{{$post->user->username}}</span>
                             </div>
                             <div class="small-text posted-on">posted on {{$post->created_at->format('d F Y')}}</div>
                         </div>
