@@ -14,10 +14,10 @@
     @vite(['resources/js/app.js'])
     <title>FindFriend</title>
 </head>
-<body class={{auth()->check() ? "" : "blue-bg"}}>
+<body class={{(Request::segment(1) === "login" || Request::segment(1) === "signup") ? "blue-bg" : ""}}>
     <header class="header">
         <a href="/"><img src="/icon-findfriend.svg" alt="find friend logo"></a>
-        @if(Request::segment(1) !== "login" && Request::segment(1) !== "register")
+        @if(Request::segment(1) !== "login" && Request::segment(1) !== "signup")
             <!-- Search Icon -->
             <div class="items-container">
                 <div class="search" id="search-friends">
@@ -40,12 +40,12 @@
             </div>
         <!-- If not logged in, show 'log in' or 'sign up' button -->
         @else
-            <!-- Show 'login' on sign up page -->
-            @if(Request::segment(1) == "")
-                <a href="/login" class="button-link">Log In</a>
-            <!-- Show 'sign up' on login page -->
-            @elseif(Request::segment(1) == "login")
+            <!-- Show 'sign up' on login page -->            
+            @if(Request::segment(1) === "login")
                 <a href="/signup" class="button-link">Sign Up</a>
+            <!-- Show 'login' on sign up page -->
+            @else
+                <a href="/login" class="button-link">Log In</a>
             @endif
         @endauth
     </header>
