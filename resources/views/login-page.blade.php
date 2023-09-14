@@ -18,7 +18,7 @@
                 </div>
                 <button class="button button--yellow" type="submit">Login</button>
             </form>
-            <p class="small-text">Don't have an account? <a href="/" class="button-link">Sign Up</a></p>
+            <p class="small-text">Don't have an account? <a href="/signup" class="button-link">Sign Up</a></p>
         </div>
     </main>
 </x-layout>

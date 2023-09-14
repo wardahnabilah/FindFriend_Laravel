@@ -45,7 +45,7 @@
                 <a href="/login" class="button-link">Log In</a>
             <!-- Show 'sign up' on login page -->
             @elseif(Request::segment(1) == "login")
-                <a href="/" class="button-link">Sign Up</a>
+                <a href="/signup" class="button-link">Sign Up</a>
             @endif
         @endauth
     </header>

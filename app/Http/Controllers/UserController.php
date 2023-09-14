@@ -29,9 +29,9 @@ class UserController extends Controller
         }
     }
 
-    // Show login page
-    public function showLoginPage() {
-        return view('login-page');
+    // Sign up
+    public function showSignupPage() {
+        return view('signup-page');
     }
 
     // Add user to database (Create new user)
@@ -55,6 +55,10 @@ class UserController extends Controller
     }
 
     // Log in
+    public function showLoginPage() {
+        return view('login-page');
+    }
+
     public function login(Request $request) {
         $userLogin = $request->validate([
             'usernameLogin' => 'required',

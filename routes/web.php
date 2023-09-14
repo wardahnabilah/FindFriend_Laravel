@@ -18,6 +18,7 @@ use App\Http\Controllers\FollowController;
 
 // User Routes
 Route::get('/', [UserController::class, 'showHomepage']);
+Route::get('/signup', [UserController::class, 'showSignupPage'])->middleware('guest');
 Route::post('/signup', [UserController::class, 'addUser'])->middleware('guest');
 Route::get('/login', [UserController::class, 'showLoginPage'])->middleware('guest');
 Route::post('/login', [UserController::class, 'login'])->middleware('guest');
