@@ -84,8 +84,11 @@ class UserController extends Controller
 
     // Profile Data
     private function getProfileData($user) {
-        $alreadyFollowed = Follow::where([['user_id', '=', auth()->user()->id], ['follow_this_user', '=', $user->id]])->count();
-        
+        if(!auth()->check()) {
+            $alreadyFollowed = false;
+        } else {
+            $alreadyFollowed = Follow::where([['user_id', '=', auth()->user()->id], ['follow_this_user', '=', $user->id]])->count();
+        }
         View::share('profileData', [
             'alreadyFollowed' => $alreadyFollowed,
             'userAvatar' => $user->avatar,

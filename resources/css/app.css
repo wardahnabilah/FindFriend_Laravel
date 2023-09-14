@@ -289,9 +289,6 @@ body {
     padding-block: 1.25rem;
     padding-inline: 1rem;
 }
-.card__timeline:hover {
-    cursor: pointer;
-}
 .card__timeline .card-header-container {
     margin-bottom: 1.25rem;
 }

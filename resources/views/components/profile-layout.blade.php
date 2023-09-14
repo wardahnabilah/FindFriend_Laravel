@@ -5,7 +5,7 @@
                 <img src="{{$profileData['userAvatar']}}" alt="" class=" photo photo--medium profile__detail-image">
                 <div class="profile__detail-text">
                     <h3 class="name">{{$profileData['username']}}</h3>
-                    @if(auth()->user()->username === $profileData['username'])
+                    @if(auth()->check() && auth()->user()->username === $profileData['username'])
                         <a href="/manage-avatar" class="button button--blue">Change Avatar</a>
                     @elseif($profileData['alreadyFollowed'])
                         <form action="/profile/{{$profileData['username']}}/unfollow" method="POST">
