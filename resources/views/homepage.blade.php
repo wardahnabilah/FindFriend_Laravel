@@ -3,7 +3,7 @@
         <main>
             <div class="container home-empty">
                 <h2>Welcome, {{auth()->user()->username}} !</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita alias nesciunt, repellat quis sed dolorem ratione illo praesentium.</p>
+                <p >Let’s embark on an exciting journey to connect with people across the globe. Begin your journey by finding friends or you can kickstart by crafting your very first post and sharing it with the world by clicking the button below.</p>
                 <a href="create-post" class="button button--yellow">Create Your First Post</a>
             </div>
         </main>
