@@ -17,10 +17,9 @@
 <body class={{auth()->check() ? "" : "blue-bg"}}>
     <header class="header">
         <a href="/"><img src="/icon-findfriend.svg" alt="find friend logo"></a>
-        <!-- If logged in, show the search and log out buttons -->
-        @auth
+        @if(Request::segment(1) !== "login" && Request::segment(1) !== "register")
+            <!-- Search Icon -->
             <div class="items-container">
-                <!-- Search Icon -->
                 <div class="search" id="search-friends">
                     Search Friends
                     <svg class="search__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="rgba(0, 0, 0, 1)">
@@ -28,6 +27,11 @@
                         <path d="M11.412 8.586c.379.38.588.882.588 1.414h2a3.977 3.977 0 0 0-1.174-2.828c-1.514-1.512-4.139-1.512-5.652 0l1.412 1.416c.76-.758 2.07-.756 2.826-.002z"></path>
                     </svg>
                 </div>
+            </div>
+        @endif
+        <!-- If logged in, show the profile and log out button -->
+        @auth
+            <div class="items-container">
                 <!-- Profile and Log out -->
                 <div class="account">
                     <a href="/logout" class="account__logout-text">Log out</a>
@@ -43,7 +47,6 @@
             @elseif(Request::segment(1) == "login")
                 <a href="/" class="button-link">Sign Up</a>
             @endif
-
         @endauth
     </header>
 
