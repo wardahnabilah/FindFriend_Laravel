@@ -1,5 +1,5 @@
 <x-layout>
-    <main class="blue-bg">
+    <main>
         <div class="container login">
             <h3>Log In</h3>
             <form class="form" action="/login" method="POST" autocomplete="off">

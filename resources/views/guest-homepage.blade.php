@@ -1,5 +1,5 @@
 <x-layout>
-    <main class="white-bg">
+    <main>
         <div class="container timeline">
             <h2 class="timeline__title">Timeline</h2>
             <p  class="timeline__subtitle">(Posts from people)</p>
