@@ -2,27 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\User;
 use App\Models\Follow;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\View;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\View;
 
 class UserController extends Controller
 {
     // Show the homepage
     public function showHomepage() {
-        //If logged in, show login homepage
+        //If logged in, show logged in homepage
         if(auth()->check()) {
             $posts = auth()->user()->feedPosts()->latest()->paginate(3); 
 
             return view('homepage', ['posts' => $posts]);
         } 
-        //If not logged in, show sign up page
+        //If not logged in, show the homepage for guest
         else {
-            return view('signup-page');
+            $allPosts = Post::latest()->paginate(4);
+
+            return view('guest-homepage', ['allPosts' => $allPosts]);
         }
     }
 
